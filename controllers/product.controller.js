@@ -1,10 +1,10 @@
 const productServices= require('../services/product.services');
 
-exports.getProduct= async (req,res)=>{
+exports.getProductsList= async (req,res)=>{
   try{
-    const product= await productServices.getAllProducts();
+    const products= await productServices.getProductsList(req);
     console.log('in controller product');
-    res.status(200).json(product);
+    res.status(200).json(products);
   }catch(error){
     console.log("error in productcontroller",error)
     res.status(500).json({error:'internal server error'});

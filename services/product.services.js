@@ -1,9 +1,21 @@
 const productModel=require('../repository/product.model');
 
-exports.getAllProducts = async () => {
+exports.getProductsList = async (req) => {
   try {
-    return await productModel.getProduct();
+    const offset = req.query.offset
+    const limit = req.query.limit 
+
+    let queryStr = 'SELECT * FROM product '
+    if (offset){
+      queryStr += ' OFFSET ' + offset
+    }
+    if(limit){
+      queryStr += ' LIMIT ' + limit
+    }
+    console.log('querystr.......',queryStr);
+
+    return await productModel.getProductsList(queryStr);
   } catch (error) {
-    throw error;
+    throw error; 
   }
 };

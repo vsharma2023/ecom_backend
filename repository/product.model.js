@@ -1,9 +1,9 @@
 const pool= require('../db');
 
-exports.getProduct = async () => {
+exports.getProductsList = async (queryStr) => {
   try {
-    const product = await pool.query('SELECT * FROM product');
-    return product.rows;
+    const products = await pool.query(queryStr);
+    return products.rows;
     
   } catch (error) {
     console.error('Error fetching users:', error);
