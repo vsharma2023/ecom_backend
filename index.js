@@ -4,6 +4,8 @@ const userRoutes=require('./routes/user.route')
 const productRoute=require('./routes/product.route')
 const app = express(); 
 const PORT = 3000; 
+const cors= require('cors')
+app.use(cors());
 
 app.get('/', (req, res)=>{ 
   res.status(200); 

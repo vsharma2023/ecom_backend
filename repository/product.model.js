@@ -10,3 +10,14 @@ exports.getProductsList = async (queryStr) => {
     throw error;
   }
 };
+
+exports.getProductCount= async()=>{
+  try{
+    const count = await pool.query('SELECT COUNT(*) FROM product')
+    console.log(count);
+    return parseInt(count.rows[0].count)
+  }catch (error) {
+    console.error('Error fetching count:', error);
+    throw error;
+  }
+}

@@ -14,7 +14,16 @@ exports.getProductsList = async (req) => {
     }
     console.log('querystr.......',queryStr);
 
-    return await productModel.getProductsList(queryStr);
+    const productList= await productModel.getProductsList(queryStr); 
+    const count = await productModel.getProductCount();
+    return { list:productList,count:count}
+    
+    //store in a variable
+    //make a func in repo thta will get the total count of products
+    // {
+    //   list:['list of products'],
+    //   count:'total no of products'
+    // }
   } catch (error) {
     throw error; 
   }
