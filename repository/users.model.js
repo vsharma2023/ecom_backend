@@ -1,21 +1,19 @@
-const pool=require('../db');
+const pool = require("../db");
 
 exports.getUsers = async (queryStr) => {
-  try {
-    const result = await pool.query(queryStr);
-    return result.rows;
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    throw error;
-  }
+  const result = await pool.query(queryStr);
+  return result.rows;
 };
-exports.getUserCount= async()=>{
-  try{
-    const count = await pool.query('SELECT COUNT(*) FROM users')
-    console.log(count);
-    return parseInt(count.rows[0].count)
-  }catch (error) {
-    console.error('Error fetching count:', error);
-    throw error;
-  }
-}
+
+exports.getUserCount = async () => {
+  const count = await pool.query("SELECT COUNT(*) FROM users");
+  return parseInt(count.rows[0].count);
+};
+
+exports.loginUser = async (username, password) => {
+  const result = await pool.query(
+    "SELECT * FROM users WHERE username = $1 AND password = $2",
+    [username, password]
+  );
+  return result;
+};

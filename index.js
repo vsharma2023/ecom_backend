@@ -22,6 +22,7 @@ pool.connect((err)=>{
 app.use('/users',userRoutes);
 app.use('/product',productRoute);
 
+
 app.listen(PORT, (error) =>{ 
     if(!error) 
         console.log("Server is Successfully Running,and App is listening on port "+ PORT) 
